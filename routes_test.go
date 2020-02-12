@@ -23,13 +23,14 @@ func TestRoutes_GetById(t *testing.T) {
 	assert.NotNil(t, createdService)
 
 	routeRequest := &RouteRequest{
-		Protocols:    StringSlice([]string{"http"}),
-		Methods:      StringSlice([]string{"GET"}),
-		Hosts:        StringSlice([]string{"foo.com"}),
-		Paths:        StringSlice([]string{"/bar"}),
-		StripPath:    Bool(true),
-		PreserveHost: Bool(true),
-		Service:      ToId(*createdService.Id),
+		Protocols:               StringSlice([]string{"http"}),
+		Methods:                 StringSlice([]string{"GET"}),
+		Hosts:                   StringSlice([]string{"foo.com"}),
+		Paths:                   StringSlice([]string{"/bar"}),
+		HTTPSRedirectStatusCode: Int(426),
+		StripPath:               Bool(true),
+		PreserveHost:            Bool(true),
+		Service:                 ToId(*createdService.Id),
 	}
 
 	createdRoute, err := client.Routes().Create(routeRequest)
@@ -66,13 +67,14 @@ func TestRoutes_CreateWithSourcesAndDestinations(t *testing.T) {
 	assert.NotNil(t, createdService)
 
 	routeRequest := &RouteRequest{
-		Protocols:    StringSlice([]string{"tls"}),
-		StripPath:    Bool(true),
-		PreserveHost: Bool(true),
-		Snis:         StringSlice([]string{"example.com"}),
-		Sources:      IpPortSliceSlice([]IpPort{{Ip: String("192.168.1.1"), Port: Int(80)}, {Ip: String("192.168.1.2"), Port: Int(81)}}),
-		Destinations: IpPortSliceSlice([]IpPort{{Ip: String("172.10.1.1"), Port: Int(83)}, {Ip: String("172.10.1.2"), Port: nil}}),
-		Service:      ToId(*createdService.Id),
+		Protocols:               StringSlice([]string{"tls"}),
+		HTTPSRedirectStatusCode: Int(426),
+		StripPath:               Bool(true),
+		PreserveHost:            Bool(true),
+		Snis:                    StringSlice([]string{"example.com"}),
+		Sources:                 IpPortSliceSlice([]IpPort{{Ip: String("192.168.1.1"), Port: Int(80)}, {Ip: String("192.168.1.2"), Port: Int(81)}}),
+		Destinations:            IpPortSliceSlice([]IpPort{{Ip: String("172.10.1.1"), Port: Int(83)}, {Ip: String("172.10.1.2"), Port: nil}}),
+		Service:                 ToId(*createdService.Id),
 	}
 
 	createdRoute, err := client.Routes().Create(routeRequest)
@@ -109,12 +111,13 @@ func TestRoutes_List(t *testing.T) {
 	assert.NotNil(t, createdService)
 
 	routeRequest := &RouteRequest{
-		Protocols:    StringSlice([]string{"http"}),
-		Methods:      StringSlice([]string{"GET"}),
-		Hosts:        StringSlice([]string{"foo.com"}),
-		StripPath:    Bool(true),
-		PreserveHost: Bool(true),
-		Service:      ToId(*createdService.Id),
+		Protocols:               StringSlice([]string{"http"}),
+		Methods:                 StringSlice([]string{"GET"}),
+		Hosts:                   StringSlice([]string{"foo.com"}),
+		HTTPSRedirectStatusCode: Int(426),
+		StripPath:               Bool(true),
+		PreserveHost:            Bool(true),
+		Service:                 ToId(*createdService.Id),
 	}
 
 	for i := 0; i < 5; i++ {
@@ -162,13 +165,14 @@ func TestRoutes_GetRoutesFromServiceId(t *testing.T) {
 	assert.NotNil(t, createdService)
 
 	routeRequest := &RouteRequest{
-		Protocols:    StringSlice([]string{"http"}),
-		Methods:      StringSlice([]string{"GET"}),
-		Hosts:        StringSlice([]string{"foo.com"}),
-		Paths:        StringSlice([]string{"/bar"}),
-		StripPath:    Bool(true),
-		PreserveHost: Bool(true),
-		Service:      ToId(*createdService.Id),
+		Protocols:               StringSlice([]string{"http"}),
+		Methods:                 StringSlice([]string{"GET"}),
+		Hosts:                   StringSlice([]string{"foo.com"}),
+		Paths:                   StringSlice([]string{"/bar"}),
+		HTTPSRedirectStatusCode: Int(426),
+		StripPath:               Bool(true),
+		PreserveHost:            Bool(true),
+		Service:                 ToId(*createdService.Id),
 	}
 
 	createdRoute, err := client.Routes().Create(routeRequest)
@@ -209,13 +213,14 @@ func TestRoutes_UpdateRouteById(t *testing.T) {
 	assert.NotNil(t, createdService)
 
 	routeRequest := &RouteRequest{
-		Protocols:    StringSlice([]string{"http"}),
-		Methods:      StringSlice([]string{"GET"}),
-		Hosts:        StringSlice([]string{"foo.com"}),
-		Paths:        StringSlice([]string{"/bar"}),
-		StripPath:    Bool(true),
-		PreserveHost: Bool(true),
-		Service:      ToId(*createdService.Id),
+		Protocols:               StringSlice([]string{"http"}),
+		Methods:                 StringSlice([]string{"GET"}),
+		Hosts:                   StringSlice([]string{"foo.com"}),
+		Paths:                   StringSlice([]string{"/bar"}),
+		HTTPSRedirectStatusCode: Int(426),
+		StripPath:               Bool(true),
+		PreserveHost:            Bool(true),
+		Service:                 ToId(*createdService.Id),
 	}
 
 	createdRoute, err := client.Routes().Create(routeRequest)
@@ -252,13 +257,14 @@ func TestRoutes_UpdateRouteMethodsToEmptyArray(t *testing.T) {
 	assert.NotNil(t, createdService)
 
 	routeRequest := &RouteRequest{
-		Protocols:    StringSlice([]string{"http"}),
-		Methods:      StringSlice([]string{"GET"}),
-		Hosts:        StringSlice([]string{"foo.com"}),
-		Paths:        StringSlice([]string{"/foo"}),
-		StripPath:    Bool(true),
-		PreserveHost: Bool(true),
-		Service:      ToId(*createdService.Id),
+		Protocols:               StringSlice([]string{"http"}),
+		Methods:                 StringSlice([]string{"GET"}),
+		Hosts:                   StringSlice([]string{"foo.com"}),
+		Paths:                   StringSlice([]string{"/foo"}),
+		HTTPSRedirectStatusCode: Int(426),
+		StripPath:               Bool(true),
+		PreserveHost:            Bool(true),
+		Service:                 ToId(*createdService.Id),
 	}
 
 	createdRoute, err := client.Routes().Create(routeRequest)
@@ -309,13 +315,14 @@ func TestRoutes_UpdateRouteHostsToEmptyArray(t *testing.T) {
 	assert.NotNil(t, createdService)
 
 	routeRequest := &RouteRequest{
-		Protocols:    StringSlice([]string{"http"}),
-		Methods:      StringSlice([]string{"GET"}),
-		Hosts:        StringSlice([]string{"foo.com"}),
-		Paths:        StringSlice([]string{"/foo"}),
-		StripPath:    Bool(true),
-		PreserveHost: Bool(true),
-		Service:      ToId(*createdService.Id),
+		Protocols:               StringSlice([]string{"http"}),
+		Methods:                 StringSlice([]string{"GET"}),
+		Hosts:                   StringSlice([]string{"foo.com"}),
+		Paths:                   StringSlice([]string{"/foo"}),
+		HTTPSRedirectStatusCode: Int(426),
+		StripPath:               Bool(true),
+		PreserveHost:            Bool(true),
+		Service:                 ToId(*createdService.Id),
 	}
 
 	createdRoute, err := client.Routes().Create(routeRequest)
@@ -366,13 +373,14 @@ func TestRoutes_UpdateRoutePathsToEmptyArray(t *testing.T) {
 	assert.NotNil(t, createdService)
 
 	routeRequest := &RouteRequest{
-		Protocols:    StringSlice([]string{"http"}),
-		Methods:      StringSlice([]string{"GET"}),
-		Hosts:        StringSlice([]string{"foo.com"}),
-		Paths:        StringSlice([]string{"/foo"}),
-		StripPath:    Bool(true),
-		PreserveHost: Bool(true),
-		Service:      ToId(*createdService.Id),
+		Protocols:               StringSlice([]string{"http"}),
+		Methods:                 StringSlice([]string{"GET"}),
+		Hosts:                   StringSlice([]string{"foo.com"}),
+		Paths:                   StringSlice([]string{"/foo"}),
+		HTTPSRedirectStatusCode: Int(426),
+		StripPath:               Bool(true),
+		PreserveHost:            Bool(true),
+		Service:                 ToId(*createdService.Id),
 	}
 
 	createdRoute, err := client.Routes().Create(routeRequest)
@@ -433,13 +441,14 @@ func Test_AllRouteEndpointsShouldReturnErrorWhenRequestUnauthorised(t *testing.T
 	assert.NotNil(t, err)
 
 	createNewRouteRequest := &RouteRequest{
-		Protocols:    StringSlice([]string{"http"}),
-		Methods:      StringSlice([]string{"POST"}),
-		Hosts:        StringSlice([]string{"foo.com"}),
-		Paths:        StringSlice([]string{"/bar"}),
-		StripPath:    Bool(true),
-		PreserveHost: Bool(true),
-		Service:      ToId(uuid.NewV4().String()),
+		Protocols:               StringSlice([]string{"http"}),
+		Methods:                 StringSlice([]string{"POST"}),
+		Hosts:                   StringSlice([]string{"foo.com"}),
+		Paths:                   StringSlice([]string{"/bar"}),
+		HTTPSRedirectStatusCode: Int(426),
+		StripPath:               Bool(true),
+		PreserveHost:            Bool(true),
+		Service:                 ToId(uuid.NewV4().String()),
 	}
 
 	newRoute, err := unauthorisedClient.Routes().Create(createNewRouteRequest)

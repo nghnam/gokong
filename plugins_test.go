@@ -208,13 +208,14 @@ func Test_PluginsCreateForASpecificRoute(t *testing.T) {
 	assert.NotNil(t, createdService)
 
 	routeRequest := &RouteRequest{
-		Protocols:    StringSlice([]string{"http"}),
-		Methods:      StringSlice([]string{"GET"}),
-		Hosts:        StringSlice([]string{fmt.Sprintf("%s.example.com", uuid.NewV4().String())}),
-		Paths:        StringSlice([]string{"/"}),
-		StripPath:    Bool(true),
-		PreserveHost: Bool(false),
-		Service:      ToId(*createdService.Id),
+		Protocols:               StringSlice([]string{"http"}),
+		Methods:                 StringSlice([]string{"GET"}),
+		Hosts:                   StringSlice([]string{fmt.Sprintf("%s.example.com", uuid.NewV4().String())}),
+		Paths:                   StringSlice([]string{"/"}),
+		HTTPSRedirectStatusCode: Int(426),
+		StripPath:               Bool(true),
+		PreserveHost:            Bool(false),
+		Service:                 ToId(*createdService.Id),
 	}
 
 	createdRoute, err := client.Routes().Create(routeRequest)
@@ -465,13 +466,14 @@ func Test_PluginsGetByRouteId(t *testing.T) {
 	assert.NotNil(t, createdService)
 
 	routeRequest := &RouteRequest{
-		Protocols:    StringSlice([]string{"http"}),
-		Methods:      StringSlice([]string{"GET"}),
-		Hosts:        StringSlice([]string{fmt.Sprintf("%s.example.com", uuid.NewV4().String())}),
-		Paths:        StringSlice([]string{"/"}),
-		StripPath:    Bool(true),
-		PreserveHost: Bool(false),
-		Service:      ToId(*createdService.Id),
+		Protocols:               StringSlice([]string{"http"}),
+		Methods:                 StringSlice([]string{"GET"}),
+		Hosts:                   StringSlice([]string{fmt.Sprintf("%s.example.com", uuid.NewV4().String())}),
+		Paths:                   StringSlice([]string{"/"}),
+		HTTPSRedirectStatusCode: Int(426),
+		StripPath:               Bool(true),
+		PreserveHost:            Bool(false),
+		Service:                 ToId(*createdService.Id),
 	}
 
 	createdRoute, err := client.Routes().Create(routeRequest)
